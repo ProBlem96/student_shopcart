@@ -14,49 +14,49 @@
 <body>
     <div id="shop" class="card text-bg-secondary mb-2" style="max-width: 18rem;"></div>
     <hr>
-    <button onclick="doSave()">save</button>
-    <button onclick="doLoad()">load</button>
-    <button type="button" class="btn btn-outline-danger" onclick="doClear()">empty cart</button>
-    <div id="showCart"></div>
+    <button onclick="DoSaves()">save</button>
+    <button onclick="DoLoads()">load</button>
+    <button type="button" class="btn btn-outline-danger" onclick="DoClears()">empty cart</button>
+    <div id="ShowCartStuds"></div>
     <script>
-        const myStudents = ["gil", "roi", "marom", "my guy", "broooo", "i had enough","yohai"]
-        let myCart = []
+        const myStudents = ["gil", "roi", "marom", "my guy", "broooo", "i had enough", "yohai"]
+        let myCartStuds = []
         const displayStudents = () => {
-            shop.innerHTML = myStudents.map((stud,i) => `
+            shop.innerHTML = myStudents.map((stud, i) => `
             <div class="card-header"><h1>student card</h1></div>
     <div class="card-body">
         <img src="https://picsum.photos/200/30${i}" class="card-img-top" alt="...">
       <h5 class="card-title">name of stud</h5>
       <p class="card-text">${stud}</p>
-    </div><button class="btn btn-success" onclick='addToCart("${stud}")'>buy </button>
+    </div><button class="btn btn-success" onclick='AddToCartStud("${stud}")'>buy </button>
             `).join('')
         }
         displayStudents()
 
-        const addToCart = (stu) => {
-            myCart.push(stu)
-            // console.table(myCart)
-            displayCart()
-            doSave()
+        const AddToCartStud = (stu) => {
+            myCartStuds.push(stu)
+            // console.table(myCartStuds)
+            displayCartStuds()
+            DoSaves()
         }
 
-        const displayCart = () => {
-            showCart.innerHTML = myCart.map(stud => `<div><button type="button" class="btn btn-outline-info" onclick='addToCart("${stud}")'>add another one </button> ${stud} </div>`).join('')
+        const displayCartStuds = () => {
+            ShowCartStuds.innerHTML = myCartStuds.map(stud => `<div><button type="button" class="btn btn-outline-info" onclick='AddToCartStud("${stud}")'>add another one </button> ${stud} </div>`).join('')
 
         }
 
-        const doSave = () => {
-            localStorage.setItem("myCart", JSON.stringify(myCart))
+        const DoSaves = () => {
+            localStorage.setItem("myCartStuds", JSON.stringify(myCartStuds))
         }
-        const doLoad = () => {
-            myCart = JSON.parse(localStorage.getItem("myCart"))
-            displayCart()
+        const DoLoads = () => {
+            myCartStuds = JSON.parse(localStorage.getItem("myCartStuds"))
+            displayCartStuds()
         }
-        doLoad()
-        const doClear = () => {
-            localStorage.setItem("myCart", JSON.stringify([]))
-            myCart = []
-            displayCart()
+        DoLoads()
+        const DoClears = () => {
+            localStorage.setItem("myCartStuds", JSON.stringify([]))
+            myCartStuds = []
+            displayCartStuds()
         }
 
     </script>
